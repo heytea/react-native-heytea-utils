@@ -1,0 +1,39 @@
+{
+  "name": "@heytea/react-native-heytea-utils",
+  "title": "React Native Heytea Utils",
+  "version": "1.0.0",
+  "description": "react-native-heytea-utils",
+  "main": "index.js",
+  "files": [
+    "README.md",
+    "android",
+    "index.js",
+    "index.d.ts",
+    "ios",
+    "react-native-heytea-utils.podspec"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heytea/react-native-heytea-utils.git"
+  },
+  "keywords": [
+    "react-native"
+  ],
+  "author": {
+    "name": "Heytea"
+  },
+  "license": "MIT",
+  "licenseFilename": "LICENSE",
+  "readmeFilename": "README.md",
+  "peerDependencies": {
+    "react": "^16.8.1",
+    "react-native": ">=0.60.0-rc.0 <1.0.x"
+  },
+  "devDependencies": {
+    "react": "^16.9.0",
+    "react-native": "^0.61.5"
+  }
+}
