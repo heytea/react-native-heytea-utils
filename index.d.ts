@@ -24,4 +24,4 @@ export enum AndroidSettings {
 }
 
 export function navigateAndroidSetting(settings: AndroidSettings): Promise<boolean>;
-export function navigateiOSSetting(todo: string): void;
+export function navigateiOSSetting(): void;
