@@ -21,12 +21,7 @@ export enum AndroidSettings {
     ACTION_DISPLAY_SETTINGS = "android.settings.DISPLAY_SETTINGS",
     ACTION_NIGHT_DISPLAY_SETTINGS = "android.settings.NIGHT_DISPLAY_SETTINGS",
     ACTION_LOCALE_SETTINGS = "android.settings.LOCALE_SETTINGS",
-    ACTION_DATE_SETTINGS = "android.settings.DATE_SETTINGS",
-    ACTION_SOUND_SETTINGS = "android.settings.SOUND_SETTINGS",
-    ACTION_DISPLAY_SETTINGS = "android.settings.DISPLAY_SETTINGS",
-    ACTION_NIGHT_DISPLAY_SETTINGS = "android.settings.NIGHT_DISPLAY_SETTINGS",
-    ACTION_LOCALE_SETTINGS = "android.settings.LOCALE_SETTINGS"
 }
 
-export function navigateAndroidSetting(settings: AndroidSettings): void;
+export function navigateAndroidSetting(settings: AndroidSettings): Promise<boolean>;
 export function navigateiOSSetting(todo: string): void;
