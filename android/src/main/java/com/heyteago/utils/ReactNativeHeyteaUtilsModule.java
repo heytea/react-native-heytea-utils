@@ -1,4 +1,4 @@
-package com.reactlibrary;
+package com.heyteago.utils;
 
 import android.content.Intent;
 
