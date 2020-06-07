@@ -17,4 +17,19 @@ import ReactNativeHeyteaUtils from '@heytea/react-native-heytea-utils';
 ReactNativeHeyteaUtils.navigateAndroidSetting(AndroidSettings.ACTION_SETTINGS);
 // iOS todo
 
+// 跳转其它应用
+// Android
+/**
+ * @param packageName 其它应用的包名
+ * @param activityPackageName 其它应用的activity全包名
+ */
+ReactNativeHeyteaUtils.navigateAndroidApp(packageName: string, activityPackageName?: string): Promise<boolean>;
+// iOS todo
+
+
+// 检查目标App是否已在本机安装
+// Android
+ReactNativeHeyteaUtils.checkAndroidAppInstalled(packageName: string): Promise<boolean>;
+// iOS todo
+
 ```

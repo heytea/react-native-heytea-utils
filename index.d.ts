@@ -25,3 +25,15 @@ export enum AndroidSettings {
 
 export function navigateAndroidSetting(settings: AndroidSettings): Promise<boolean>;
 export function navigateiOSSetting(todo: string): void;
+
+/**
+ * 跳转其它应用
+ * @param packageName 其它应用的包名
+ * @param activityPackageName 其它应用的activity全包名
+ */
+export function navigateAndroidApp(packageName: string, activityPackageName?: string): Promise<boolean>;
+/**
+ * 检查目标App是否已在本机安装
+ * @param packageName 目标App的包名
+ */
+export function checkAndroidAppInstalled(packageName: string): Promise<boolean>;
