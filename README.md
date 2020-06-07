@@ -14,8 +14,9 @@ import ReactNativeHeyteaUtils from '@heytea/react-native-heytea-utils';
 
 // 跳转设置页面
 // Android
-ReactNativeHeyteaUtils.navigateAndroidSetting(AndroidSettings.ACTION_SETTINGS);
-// iOS todo
+ReactNativeHeyteaUtils.navigateAndroidSetting(AndroidSettings.ACTION_SETTINGS): Promise<boolean>;
+// iOS
+ReactNativeHeyteaUtils.navigateiOSSetting(url: string);
 
 // 跳转其它应用
 // Android

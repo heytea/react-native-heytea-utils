@@ -24,7 +24,7 @@ export enum AndroidSettings {
 }
 
 export function navigateAndroidSetting(settings: AndroidSettings): Promise<boolean>;
-export function navigateiOSSetting(todo: string): void;
+export function navigateiOSSetting(url: string): void;
 
 /**
  * 跳转其它应用
