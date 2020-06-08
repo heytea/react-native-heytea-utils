@@ -4,6 +4,8 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.text.TextUtils;
 
 import androidx.annotation.Nullable;
 
@@ -87,6 +89,29 @@ public class ReactNativeHeyteaUtilsModule extends ReactContextBaseJavaModule {
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
             promise.reject(new Throwable(e.getMessage()));
+        }
+    }
+
+    /**
+     * 跳转应用商店
+     *
+     * @param appPkg    app包名
+     * @param marketPkg 应用商店包名，如果为空，则由系统弹出应用商店列表供用户选择
+     */
+    @ReactMethod
+    public void navigateAndroidAppStore(String appPkg, @Nullable String marketPkg) {
+        try {
+            if (TextUtils.isEmpty(appPkg))
+                return;
+            Uri uri = Uri.parse("market://details?id=" + appPkg);
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            if (!TextUtils.isEmpty(marketPkg)) {
+                intent.setPackage(marketPkg);
+            }
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            getCurrentActivity().startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

@@ -37,3 +37,9 @@ export function navigateAndroidApp(packageName: string, activityPackageName?: st
  * @param packageName 目标App的包名
  */
 export function checkAndroidAppInstalled(packageName: string): Promise<boolean>;
+/**
+ * 跳转应用商店
+ * @param appPkg app包名
+ * @param marketPkg 应用商店包名，如果为空，则由系统弹出应用商店列表供用户选择
+ */
+export function navigateAndroidAppStore(appPkg: string, marketPkg?: string): void;
