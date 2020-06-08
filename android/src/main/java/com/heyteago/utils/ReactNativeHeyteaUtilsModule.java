@@ -8,6 +8,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.text.TextUtils;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 
@@ -120,25 +121,27 @@ public class ReactNativeHeyteaUtilsModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void showAlert(String title, String content, String cancelText, String confirmText, final Callback cancelCallback, final Callback confirmCallback) {
-        new AlertDialog.Builder(getCurrentActivity())
-                .setTitle(title)
-                .setMessage(content)
-                .setNegativeButton(cancelText, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (cancelCallback != null) {
-                            cancelCallback.invoke();
-                        }
-                    }
-                })
-                .setPositiveButton(confirmText, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (confirmCallback != null) {
-                            confirmCallback.invoke();
-                        }
-                    }
-                })
-                .show();
+        HeyteaAlert heyteaAlert = new HeyteaAlert(getCurrentActivity());
+        heyteaAlert.setTitle(title);
+        heyteaAlert.setContent(content);
+        heyteaAlert.setCancelText(cancelText);
+        heyteaAlert.setConfirmText(confirmText);
+        heyteaAlert.setOnCancelClick(new HeyteaAlert.OnCancelClick() {
+            @Override
+            public void onClick(View view) {
+                if (cancelCallback != null) {
+                    cancelCallback.invoke();
+                }
+            }
+        });
+        heyteaAlert.setOnConfirmClick(new HeyteaAlert.OnConfirmClick() {
+            @Override
+            public void onClick(View view) {
+                if (confirmCallback != null) {
+                    confirmCallback.invoke();
+                }
+            }
+        });
+        heyteaAlert.show();
     }
 }
