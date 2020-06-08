@@ -1,6 +1,7 @@
 package com.heyteago.utils;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -70,6 +71,11 @@ public class HeyteaAlert {
     }
 
     public void show() {
+        if (TextUtils.isEmpty(mTvTitle.getText().toString())) {
+            mTvTitle.setVisibility(View.GONE);
+        } else {
+            mTvTitle.setVisibility(View.VISIBLE);
+        }
         mAppCompatDialog.show();
     }
 
