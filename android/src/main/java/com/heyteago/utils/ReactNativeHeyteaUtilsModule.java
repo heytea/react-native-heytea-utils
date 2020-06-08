@@ -1,6 +1,8 @@
 package com.heyteago.utils;
 
+import android.app.AlertDialog;
 import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -9,6 +11,7 @@ import android.text.TextUtils;
 
 import androidx.annotation.Nullable;
 
+import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
@@ -113,5 +116,29 @@ public class ReactNativeHeyteaUtilsModule extends ReactContextBaseJavaModule {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @ReactMethod
+    public void showAlert(String title, String content, String cancelText, String confirmText, final Callback cancelCallback, final Callback confirmCallback) {
+        new AlertDialog.Builder(getCurrentActivity())
+                .setTitle(title)
+                .setMessage(content)
+                .setNegativeButton(cancelText, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (cancelCallback != null) {
+                            cancelCallback.invoke();
+                        }
+                    }
+                })
+                .setPositiveButton(confirmText, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (confirmCallback != null) {
+                            confirmCallback.invoke();
+                        }
+                    }
+                })
+                .show();
     }
 }

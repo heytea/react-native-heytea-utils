@@ -43,3 +43,13 @@ export function checkAndroidAppInstalled(packageName: string): Promise<boolean>;
  * @param marketPkg 应用商店包名，如果为空，则由系统弹出应用商店列表供用户选择
  */
 export function navigateAndroidAppStore(appPkg: string, marketPkg?: string): void;
+/**
+ * 显示系统对话框
+ * @param title 标题
+ * @param content 内容
+ * @param cancelText 取消文本
+ * @param confirmText 确认文本
+ * @param cancelCallback 取消回调
+ * @param confirmCallback 确认回调
+ */
+export function showAlert(title: string, content: string, cancelText: string, confirmText: string, cancelCallback?: () => void, confirmCallback?: () => void): void;
