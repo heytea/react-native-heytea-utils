@@ -12,21 +12,24 @@
 
         <TextView
             android:id="@+id/tv_heytea_dialog_title"
-            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="13dp"
+            android:layout_marginTop="32dp"
             android:text="title"
             android:textColor="#343434"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_heytea_dialog_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="32dp"
+            android:gravity="center"
             android:text="content"
-            android:layout_marginBottom="10dp"
             android:textColor="#5D5D5D"
             android:textSize="14sp" />
 
@@ -42,14 +45,13 @@
 
             <Button
                 android:id="@+id/btn_heytea_dialog_cancel"
-                android:textStyle="bold"
-                android:textSize="17sp"
-                android:textColor="#5D5D5D"
-                android:background="?android:attr/selectableItemBackground"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="取消" />
+                android:background="?android:attr/selectableItemBackground"
+                android:text="取消"
+                android:textColor="#5D5D5D"
+                android:textSize="17sp" />
 
             <View
                 android:layout_width="2px"
@@ -58,14 +60,13 @@
 
             <Button
                 android:id="@+id/btn_heytea_dialog_confirm"
-                android:textStyle="bold"
-                android:textSize="17sp"
-                android:textColor="#DBA871"
-                android:background="?android:attr/selectableItemBackground"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="确定" />
+                android:background="?android:attr/selectableItemBackground"
+                android:text="确定"
+                android:textColor="#DBA871"
+                android:textSize="17sp" />
         </LinearLayout>
     </LinearLayout>
 

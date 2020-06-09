@@ -1,7 +1,7 @@
 {
   "name": "@heytea/react-native-heytea-utils",
   "title": "React Native Heytea Utils",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "@heytea/react-native-heytea-utils",
   "main": "index.js",
   "files": [
