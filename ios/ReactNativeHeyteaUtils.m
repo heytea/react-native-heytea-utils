@@ -14,4 +14,11 @@ RCT_EXPORT_METHOD(navigateiOSSetting){
    
 }
 
+RCT_EXPORT_METHOD(getLocationAuthorizationStatus:(RCTResponseSenderBlock)callback) {
+ CLAuthorizationStatus status =  [CLLocationManager authorizationStatus];
+ callback(@[@(status)]);
+  
+}
+
+
 @end
