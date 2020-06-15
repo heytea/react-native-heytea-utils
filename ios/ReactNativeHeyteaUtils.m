@@ -1,4 +1,5 @@
 #import "ReactNativeHeyteaUtils.h"
+#import <CoreLocation/CoreLocation.h>
 
 @implementation ReactNativeHeyteaUtils
 
