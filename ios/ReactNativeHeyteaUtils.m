@@ -1,4 +1,5 @@
 #import "ReactNativeHeyteaUtils.h"
+#import <CoreLocation/CoreLocation.h>
 
 @implementation ReactNativeHeyteaUtils
 
@@ -13,5 +14,12 @@ RCT_EXPORT_METHOD(navigateiOSSetting){
    }
    
 }
+
+RCT_EXPORT_METHOD(getLocationAuthorizationStatus:(RCTResponseSenderBlock)callback) {
+ CLAuthorizationStatus status =  [CLLocationManager authorizationStatus];
+ callback(@[@(status)]);
+  
+}
+
 
 @end

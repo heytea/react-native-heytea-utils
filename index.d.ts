@@ -23,8 +23,16 @@ export enum AndroidSettings {
     ACTION_LOCALE_SETTINGS = "android.settings.LOCALE_SETTINGS",
 }
 
+export enum IOSAuthorizationStatus {
+    AuthorizationStatusNotDetermined = 0,  // 用户还未选择是否允许授权 可以代表第一次询问
+    AuthorizationStatusRestricted = 1, // 拒绝授权 包括 Restricted & Denied
+    AuthorizationStatusDenied = 2, // 拒绝授权 包括 Restricted & Denied
+    AuthorizationStatusAuthorizedAlways = 3, //已授权
+    AuthorizationStatusAuthorizedWhenInUse = 4 //已授权
+}
+
 export function navigateAndroidSetting(settings: AndroidSettings): Promise<boolean>;
-export function navigateiOSSetting(url: string): void;
+export function navigateiOSSetting(): void;
 
 /**
  * 跳转其它应用
@@ -58,3 +66,5 @@ export function showAlert(title: string, content: string, cancelText: string, co
  * 沉浸式状态栏
  */
 export function requestTransparentStatusBar(): void;
+
+export function getLocationAuthorizationStatus():Promise<IOSAuthorizationStatus>
