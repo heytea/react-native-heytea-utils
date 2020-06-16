@@ -33,4 +33,7 @@ ReactNativeHeyteaUtils.navigateAndroidApp(packageName: string, activityPackageNa
 ReactNativeHeyteaUtils.checkAndroidAppInstalled(packageName: string): Promise<boolean>;
 // iOS todo
 
+
+// 沉浸式状态栏 （Android only）
+ReactNativeHeyteaUtils.requestTransparentStatusBar(): void;
 ```

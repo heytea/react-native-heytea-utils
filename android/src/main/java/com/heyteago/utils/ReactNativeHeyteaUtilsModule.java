@@ -144,4 +144,13 @@ public class ReactNativeHeyteaUtilsModule extends ReactContextBaseJavaModule {
         });
         heyteaAlert.show();
     }
+
+    /**
+     * 沉浸式状态栏
+     */
+    @ReactMethod
+    public void requestTransparentStatusBar() {
+        getCurrentActivity().getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+        getCurrentActivity().getWindow().setStatusBarColor(Color.TRANSPARENT);
+    }
 }
