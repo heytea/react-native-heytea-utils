@@ -154,4 +154,14 @@ public class ReactNativeHeyteaUtilsModule extends ReactContextBaseJavaModule {
         getCurrentActivity().getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
         getCurrentActivity().getWindow().setStatusBarColor(Color.TRANSPARENT);
     }
+
+
+    /**
+     * 获取Sim卡的国家代码
+     */
+    @ReactMethod
+    public void getSimCountryIso(Promise promise) {
+        TelephonyManager tm = (TelephonyManager) reactContext.getSystemService(Context.TELEPHONY_SERVICE);
+        promise.resolve(tm != null ? tm.getSimCountryIso() : "");
+    }
 }

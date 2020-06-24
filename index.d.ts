@@ -1,3 +1,4 @@
+
 export enum AndroidSettings {
     ACTION_SETTINGS = "android.settings.SETTINGS",
     ACTION_LOCATION_SOURCE_SETTINGS = "android.settings.LOCATION_SOURCE_SETTINGS",
@@ -68,3 +69,9 @@ export function showAlert(title: string, content: string, cancelText: string, co
 export function requestTransparentStatusBar(): void;
 
 export function getLocationAuthorizationStatus():Promise<IOSAuthorizationStatus>
+
+
+/**
+ * 获取Sim卡的国家代码
+ */
+export function getSimCountryIso():Promise<string>
