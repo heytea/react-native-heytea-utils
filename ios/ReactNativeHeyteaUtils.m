@@ -34,4 +34,23 @@ RCT_EXPORT_METHOD(getSimCountryIso:(RCTPromiseResolveBlock)resolve
 }
 
 
+RCT_EXPORT_METHOD(getTimeZone:(RCTPromiseResolveBlock)resolve
+                            :(RCTPromiseRejectBlock)reject){  
+ //获取当地的时区
+  NSString *tzStr;
+  [NSTimeZone resetSystemTimeZone]; // 重置手机系统的时区
+  NSInteger offset = [NSTimeZone localTimeZone].secondsFromGMT;//获取距离0时区偏差的时间
+  offset = offset/3600;
+  if (offset >0) {
+    tzStr = [NSString stringWithFormat:@"GMT+%ld:00", (long)offset];
+  } else {
+    tzStr = [NSString stringWithFormat:@"GMT-%ld:00", (long)offset];
+  }
+  resolve(tzStr);
+}
+
+
+ 
+
+
 @end
