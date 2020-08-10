@@ -34,8 +34,7 @@ RCT_EXPORT_METHOD(getSimCountryIso:(RCTPromiseResolveBlock)resolve
 }
 
 
-RCT_EXPORT_METHOD(getTimeZone:(RCTPromiseResolveBlock)resolve
-                            :(RCTPromiseRejectBlock)reject){  
+RCT_EXPORT_METHOD(getTimeZone){  
  //获取当地的时区
   NSString *tzStr;
   [NSTimeZone resetSystemTimeZone]; // 重置手机系统的时区
@@ -46,7 +45,7 @@ RCT_EXPORT_METHOD(getTimeZone:(RCTPromiseResolveBlock)resolve
   } else {
     tzStr = [NSString stringWithFormat:@"GMT-%ld:00", (long)offset];
   }
-  resolve(tzStr);
+  return tzStr;
 }
 
 

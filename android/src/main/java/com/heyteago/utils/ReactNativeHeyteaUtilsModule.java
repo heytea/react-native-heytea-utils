@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.view.View;
+import java.util.TimeZone;
 
 import androidx.annotation.Nullable;
 
@@ -166,4 +167,13 @@ public class ReactNativeHeyteaUtilsModule extends ReactContextBaseJavaModule {
         TelephonyManager tm = (TelephonyManager) reactContext.getSystemService(Context.TELEPHONY_SERVICE);
         promise.resolve(tm != null ? tm.getSimCountryIso() : "");
     }
+
+    @ReactMethod(isBlockingSynchronousMethod=true)
+    public String getTimeZone() {
+        TimeZone timeZone = TimeZone.getDefault();
+        String s = timeZone.getDisplayName(false, TimeZone.SHORT);
+        return s;
+    }
+
+
 }
