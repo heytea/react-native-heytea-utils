@@ -1,5 +1,7 @@
 #import "ReactNativeHeyteaUtils.h"
 #import <CoreLocation/CoreLocation.h>
+#import <CoreTelephony/CTCarrier.h>
+#import <CoreTelephony/CTTelephonyNetworkInfo.h>
 
 @implementation ReactNativeHeyteaUtils
 
@@ -15,11 +17,40 @@ RCT_EXPORT_METHOD(navigateiOSSetting){
    
 }
 
-RCT_EXPORT_METHOD(getLocationAuthorizationStatus:(RCTResponseSenderBlock)callback) {
+RCT_EXPORT_METHOD(getLocationAuthorizationStatus
+                :(RCTPromiseResolveBlock)resolve    
+                :(RCTPromiseRejectBlock)reject) {
  CLAuthorizationStatus status =  [CLLocationManager authorizationStatus];
- callback(@[@(status)]);
+ resolve(@(status));
   
 }
+
+RCT_EXPORT_METHOD(getSimCountryIso:(RCTPromiseResolveBlock)resolve
+                  :(RCTPromiseRejectBlock)reject){
+    CTTelephonyNetworkInfo *netInfo = [[CTTelephonyNetworkInfo alloc]init];
+    CTCarrier *carrier = [netInfo subscriberCellularProvider];
+    NSString *code = [carrier isoCountryCode];
+    resolve(code);
+}
+
+
+RCT_EXPORT_METHOD(getTimeZone:(RCTPromiseResolveBlock)resolve
+                  :(RCTPromiseRejectBlock)reject){
+ //获取当地的时区
+  NSString *tzStr;
+  [NSTimeZone resetSystemTimeZone]; // 重置手机系统的时区
+  NSInteger offset = [NSTimeZone localTimeZone].secondsFromGMT;//获取距离0时区偏差的时间
+  offset = offset/3600;
+  if (offset >0) {
+    tzStr = [NSString stringWithFormat:@"GMT+%ld:00", (long)offset];
+  } else {
+    tzStr = [NSString stringWithFormat:@"GMT-%ld:00", (long)offset];
+  }
+    resolve(tzStr);
+}
+
+
+ 
 
 
 @end
