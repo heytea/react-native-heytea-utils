@@ -70,13 +70,11 @@ export function requestTransparentStatusBar(): void;
 
 export function getLocationAuthorizationStatus():Promise<IOSAuthorizationStatus>
 
-<<<<<<< HEAD
 export function navigateAndroidBaiduMap(latitude: string, longitude: string): void
 
 export function navigateAndroidGaodeMap(latitude: string, longitude: string): void
 
 export function navigateAndroidGoogleMap(latitude: string, longitude: string): void
-=======
 
 /**
  * 获取Sim卡的国家代码
@@ -88,4 +86,3 @@ export function getSimCountryIso():Promise<string>
  * 获取手机默认时区
  */
 export function getTimeZone():string
->>>>>>> 5e0e50cca462edfe77386a75758cc695939a307d
