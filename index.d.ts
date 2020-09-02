@@ -68,3 +68,9 @@ export function showAlert(title: string, content: string, cancelText: string, co
 export function requestTransparentStatusBar(): void;
 
 export function getLocationAuthorizationStatus():Promise<IOSAuthorizationStatus>
+
+export function navigateAndroidBaiduMap(latitude: string, longitude: string): void
+
+export function navigateAndroidGaodeMap(latitude: string, longitude: string): void
+
+export function navigateAndroidGoogleMap(latitude: string, longitude: string): void

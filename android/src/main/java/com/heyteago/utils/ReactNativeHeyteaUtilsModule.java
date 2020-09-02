@@ -1,13 +1,13 @@
 package com.heyteago.utils;
 
-import android.app.AlertDialog;
 import android.content.ComponentName;
-import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.view.View;
 
@@ -18,6 +18,9 @@ import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+
+import java.net.URISyntaxException;
+import java.util.TimeZone;
 
 public class ReactNativeHeyteaUtilsModule extends ReactContextBaseJavaModule {
 
@@ -154,4 +157,51 @@ public class ReactNativeHeyteaUtilsModule extends ReactContextBaseJavaModule {
         getCurrentActivity().getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
         getCurrentActivity().getWindow().setStatusBarColor(Color.TRANSPARENT);
     }
+
+
+    /**
+     * 获取Sim卡的国家代码
+     */
+    @ReactMethod
+    public void getSimCountryIso(Promise promise) {
+        TelephonyManager tm = (TelephonyManager) reactContext.getSystemService(Context.TELEPHONY_SERVICE);
+        promise.resolve(tm != null ? tm.getSimCountryIso() : "");
+    }
+
+    @ReactMethod(isBlockingSynchronousMethod = true)
+    public String getTimeZone() {
+        TimeZone timeZone = TimeZone.getDefault();
+        String s = timeZone.getDisplayName(false, TimeZone.SHORT);
+        return s;
+    }
+
+    @ReactMethod
+    public void navigateAndroidBaiduMap(String latitude, String longitude) {
+        try {
+            Intent intent = Intent.getIntent("intent://map/direction?destination=latlng:"+ latitude + "," + longitude +
+                    "|name:&origin=" + "我的位置" + "&mode=driving?ion=" + "我的位置"+ "&referer=Autohome|GasStation#Intent;scheme=bdapp;package=com.baidu.BaiduMap;end");
+            getCurrentActivity().startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @ReactMethod
+    public void navigateAndroidGaodeMap(String latitude, String longitude) {
+        try {
+            Intent intent = Intent.getIntent("androidamap://navi?sourceApplication=appName&poiname=我的目的地&lat=" + latitude + "&lon=" + longitude + "&dev=0");
+            getCurrentActivity().startActivity(intent);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @ReactMethod
+    public void navigateAndroidGoogleMap(String latitude, String longitude) {
+        Uri gmmIntentUri = Uri.parse("google.navigation:q=" + latitude + "," + longitude+"&mode=w");
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        getCurrentActivity().startActivity(mapIntent);
+    }
+
 }
