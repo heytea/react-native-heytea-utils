@@ -49,6 +49,37 @@ RCT_EXPORT_METHOD(getTimeZone:(RCTPromiseResolveBlock)resolve
     resolve(tzStr);
 }
 
+// 判断是否安装app
+RCT_EXPORT_METHOD(appIsInstalled:(NSString *)appID
+                  :(RCTPromiseResolveBlock)resolve
+                  :(RCTPromiseRejectBlock)reject){
+    NSURL *appUrl = [NSURL URLWithString:appID];
+    BOOL isCanOpen = [[UIApplication sharedApplication] canOpenURL:appUrl];
+    if (isCanOpen) {
+        resolve(@(YES));
+    }else{
+        resolve(@(NO));
+    }
+}
+
+// 打开一个app
+RCT_EXPORT_METHOD(openApp:(NSString *)appID
+                  :(RCTPromiseResolveBlock)resolve
+                  :(RCTPromiseRejectBlock)reject){
+    NSURL *appUrl = [NSURL URLWithString:appID];
+    BOOL isCanOpen = [[UIApplication sharedApplication] canOpenURL:appUrl];
+    if (isCanOpen) {
+        [[UIApplication sharedApplication] openURL:appUrl options:@{} completionHandler:^(BOOL success) {
+            if (success) {
+                resolve(@(YES));
+            }else{
+                resolve(@(NO));
+            }
+        }];
+    }else{
+        resolve(@(NO));
+    }
+}
 
  
 
