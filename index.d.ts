@@ -68,7 +68,7 @@ export function showAlert(title: string, content: string, cancelText: string, co
  */
 export function requestTransparentStatusBar(): void;
 
-export function getLocationAuthorizationStatus():Promise<IOSAuthorizationStatus>
+export function getLocationAuthorizationStatus(): Promise<IOSAuthorizationStatus>
 
 export function navigateAndroidBaiduMap(latitude: string, longitude: string): void
 
@@ -79,10 +79,17 @@ export function navigateAndroidGoogleMap(latitude: string, longitude: string): v
 /**
  * 获取Sim卡的国家代码
  */
-export function getSimCountryIso():Promise<string>
+export function getSimCountryIso(): Promise<string>
 
 
 /**
  * 获取手机默认时区
  */
-export function getTimeZone():string
+export function getTimeZone(): string
+
+// 判断app 是否安装 传appID   例如：baidumap://
+export function appIsInstalled(appID: string): Promise<boolean>
+
+// 打开app
+export function openApp(appID: string): Promise<boolean>
+
