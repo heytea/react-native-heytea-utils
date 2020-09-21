@@ -54,31 +54,35 @@ RCT_EXPORT_METHOD(appIsInstalled:(NSString *)appID
                   :(RCTPromiseResolveBlock)resolve
                   :(RCTPromiseRejectBlock)reject){
     NSURL *appUrl = [NSURL URLWithString:appID];
-    BOOL isCanOpen = [[UIApplication sharedApplication] canOpenURL:appUrl];
-    if (isCanOpen) {
-        resolve(@(YES));
-    }else{
-        resolve(@(NO));
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        BOOL isCanOpen = [[UIApplication sharedApplication] canOpenURL:appUrl];
+        if (isCanOpen) {
+            resolve(@(YES));
+        }else{
+            resolve(@(NO));
+        }
+    });
+   
 }
 
 // 打开一个app
 RCT_EXPORT_METHOD(openApp:(NSString *)appID
                   :(RCTPromiseResolveBlock)resolve
                   :(RCTPromiseRejectBlock)reject){
-    NSURL *appUrl = [NSURL URLWithString:appID];
-    BOOL isCanOpen = [[UIApplication sharedApplication] canOpenURL:appUrl];
-    if (isCanOpen) {
-        [[UIApplication sharedApplication] openURL:appUrl options:@{} completionHandler:^(BOOL success) {
-            if (success) {
-                resolve(@(YES));
-            }else{
-                resolve(@(NO));
-            }
-        }];
-    }else{
-        resolve(@(NO));
-    }
+    
+    NSString *urlStr = [[NSString stringWithFormat:@"%@", appID] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *jumpURL = [NSURL URLWithString:urlStr];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        BOOL isCanOpen = [[UIApplication sharedApplication] canOpenURL:jumpURL];
+    
+        if (isCanOpen) {
+            [[UIApplication sharedApplication] openURL:jumpURL];
+        }else{
+            resolve(@(NO));
+        }
+    });
+   
 }
 
  
