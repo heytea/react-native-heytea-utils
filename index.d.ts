@@ -61,7 +61,7 @@ export function navigateAndroidAppStore(appPkg: string, marketPkg?: string): voi
  * @param cancelCallback 取消回调
  * @param confirmCallback 确认回调
  */
-export function showAlert(title: string, content: string, cancelText: string, confirmText: string, cancelCallback?: () => void, confirmCallback?: () => void): void;
+export function showAlert(title: string, content: string, cancelText: string, confirmText: string, showCancel: boolean,  cancelCallback?: () => void, confirmCallback?: () => void): void;
 
 /**
  * 沉浸式状态栏

@@ -126,20 +126,25 @@ public class ReactNativeHeyteaUtilsModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void showAlert(String title, String content, String cancelText, String confirmText, final Callback cancelCallback, final Callback confirmCallback) {
+    public void showAlert(String title, String content, String cancelText, String confirmText, boolean showCancel, final Callback cancelCallback, final Callback confirmCallback) {
         HeyteaAlert heyteaAlert = new HeyteaAlert(getCurrentActivity());
         heyteaAlert.setTitle(title);
         heyteaAlert.setContent(content);
         heyteaAlert.setCancelText(cancelText);
         heyteaAlert.setConfirmText(confirmText);
-        heyteaAlert.setOnCancelClick(new HeyteaAlert.OnCancelClick() {
-            @Override
-            public void onClick(View view) {
-                if (cancelCallback != null) {
-                    cancelCallback.invoke();
+        if (showCancel) {
+            heyteaAlert.setCancelBtnState(showCancel);
+            heyteaAlert.setOnCancelClick(new HeyteaAlert.OnCancelClick() {
+                @Override
+                public void onClick(View view) {
+                    if (cancelCallback != null) {
+                        cancelCallback.invoke();
+                    }
                 }
-            }
-        });
+            });
+        }else {
+            heyteaAlert.setCancelBtnState(showCancel);
+        }
         heyteaAlert.setOnConfirmClick(new HeyteaAlert.OnConfirmClick() {
             @Override
             public void onClick(View view) {

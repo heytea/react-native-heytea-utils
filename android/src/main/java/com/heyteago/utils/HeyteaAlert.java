@@ -17,6 +17,8 @@ public class HeyteaAlert {
     private Button mBtnConfirm;
     private TextView mTvTitle;
     private TextView mTvContent;
+    private View mLineView;
+
 
     public HeyteaAlert(Context context) {
         mAppCompatDialog = new AppCompatDialog(context);
@@ -25,6 +27,7 @@ public class HeyteaAlert {
         mBtnConfirm = view.findViewById(R.id.btn_heytea_dialog_confirm);
         mTvTitle = view.findViewById(R.id.tv_heytea_dialog_title);
         mTvContent = view.findViewById(R.id.tv_heytea_dialog_content);
+        mLineView = view.findViewById(R.id.btn_heytea_line);
         mBtnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,6 +70,19 @@ public class HeyteaAlert {
     public void setConfirmText(String text) {
         if (mBtnConfirm != null) {
             mBtnConfirm.setText(text);
+        }
+    }
+
+
+    public void setCancelBtnState(boolean show) {
+        if (mBtnConfirm != null) {
+            if (show) {
+                mBtnCancel.setVisibility(View.VISIBLE);
+                mLineView.setVisibility(View.VISIBLE);
+            } else {
+                mBtnCancel.setVisibility(View.GONE);
+                mLineView.setVisibility(View.GONE);
+            }
         }
     }
 
