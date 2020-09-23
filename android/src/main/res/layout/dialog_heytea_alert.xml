@@ -54,6 +54,7 @@
                 android:textSize="17sp" />
 
             <View
+                android:id="@+id/btn_heytea_line"
                 android:layout_width="2px"
                 android:layout_height="match_parent"
                 android:background="#eaeaea" />

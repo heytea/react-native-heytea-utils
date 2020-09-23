@@ -75,7 +75,7 @@ public class HeyteaAlert {
 
 
     public void setCancelBtnState(boolean show) {
-        if (mBtnConfirm != null) {
+        if (mBtnCancel != null) {
             if (show) {
                 mBtnCancel.setVisibility(View.VISIBLE);
                 mLineView.setVisibility(View.VISIBLE);
