@@ -92,6 +92,11 @@ public class HeyteaAlert {
         } else {
             mTvTitle.setVisibility(View.VISIBLE);
         }
+        if (TextUtils.isEmpty(mTvContent.getText().toString())) {
+            mTvContent.setVisibility(View.GONE);
+        } else {
+            mTvContent.setVisibility(View.VISIBLE);
+        }
         mAppCompatDialog.show();
     }
 
