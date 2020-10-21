@@ -98,7 +98,7 @@ public class ReactNativeHeyteaUtilsModule extends ReactContextBaseJavaModule {
             promise.resolve(packageInfo != null);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
-            promise.reject(new Throwable(e.getMessage()));
+            promise.resolve(false);
         }
     }
 
