@@ -125,16 +125,22 @@ public class ReactNativeHeyteaUtilsModule extends ReactContextBaseJavaModule {
         }
     }
 
+    private HeyteaAlert mHeyteaAlert = null;
+
     @ReactMethod
     public void showAlert(String title, String content, String cancelText, String confirmText, boolean showCancel, final Callback cancelCallback, final Callback confirmCallback) {
-        HeyteaAlert heyteaAlert = new HeyteaAlert(getCurrentActivity());
-        heyteaAlert.setTitle(title);
-        heyteaAlert.setContent(content);
-        heyteaAlert.setCancelText(cancelText);
-        heyteaAlert.setConfirmText(confirmText);
+        if (mHeyteaAlert != null) {
+            mHeyteaAlert.dismiss();
+            mHeyteaAlert = null;
+        }
+        mHeyteaAlert = new HeyteaAlert(getCurrentActivity());
+        mHeyteaAlert.setTitle(title);
+        mHeyteaAlert.setContent(content);
+        mHeyteaAlert.setCancelText(cancelText);
+        mHeyteaAlert.setConfirmText(confirmText);
         if (showCancel) {
-            heyteaAlert.setCancelBtnState(showCancel);
-            heyteaAlert.setOnCancelClick(new HeyteaAlert.OnCancelClick() {
+            mHeyteaAlert.setCancelBtnState(showCancel);
+            mHeyteaAlert.setOnCancelClick(new HeyteaAlert.OnCancelClick() {
                 @Override
                 public void onClick(View view) {
                     if (cancelCallback != null) {
@@ -143,9 +149,9 @@ public class ReactNativeHeyteaUtilsModule extends ReactContextBaseJavaModule {
                 }
             });
         }else {
-            heyteaAlert.setCancelBtnState(showCancel);
+            mHeyteaAlert.setCancelBtnState(showCancel);
         }
-        heyteaAlert.setOnConfirmClick(new HeyteaAlert.OnConfirmClick() {
+        mHeyteaAlert.setOnConfirmClick(new HeyteaAlert.OnConfirmClick() {
             @Override
             public void onClick(View view) {
                 if (confirmCallback != null) {
@@ -153,7 +159,7 @@ public class ReactNativeHeyteaUtilsModule extends ReactContextBaseJavaModule {
                 }
             }
         });
-        heyteaAlert.show();
+        mHeyteaAlert.show();
     }
 
     /**
